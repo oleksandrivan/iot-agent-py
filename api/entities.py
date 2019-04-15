@@ -60,25 +60,27 @@ class Service:
       return state
 
 class Device:
-    def __init__(self, deviceId,number,type, variableName,house):
+    def __init__(self, deviceId, mac, number, type, variableName,house):
         self.deviceId = deviceId
         self.type = type
         self.variableName = variableName
         self.house = house
+        self.mac = mac
         description = {"device_id" : deviceId,
-        "entity_name" : "urn:ngsd-ld:{}:{}".format(type,number),
+        "entity_name" : "urn:ngsd-ld:{}:{}".format(type, number),
         "entity_type" : type,
         "protocol" : "PDI-IoTA-UltraLight",
-        "timezone" : "Europe/Berlin" ,
-        "attributes" : [ { "object_id" : variableName, "name" : variableName,
-        "type" : "Integer"  } ],
-        "static_attributes" : [ {"name" : "houseRef" , "type" : "Relationship",
-        "value" : house.id } ],
+        "timezone" : "Europe/Berlin",
+        "attributes" : [{"object_id": variableName, "name": variableName,
+        "type": "Integer"}],
+        "static_attributes": [{"name": "houseRef", "type": "Relationship",
+        "value": house.id }],
         }
         self.devices = [description]
     def __getstate__(self):
       state = self.__dict__.copy()
       del state['deviceId']
+      del state['mac']
       del state['type']
       del state['variableName']
       del state['house']
