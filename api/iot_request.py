@@ -50,3 +50,11 @@ def sendReading(service,device,reading):
     data = device.variableName + "|"+ str(reading)
     r = requests.post(url,headers=headers, params=params,data=data)
     r.raise_for_status() #Make sure request was succesfull
+
+def registerSubscription(subscription):
+    url = "http://{}:{}/v2/subscriptions/".format(SERVER_IP, ORION_PORT)
+    headers = {"Content-Type": "application/json",
+               "fiware-service": "openiot", "fiware-servicepath": "/"}
+    data = json.encode(subscription, unpicklable=False)
+    r = requests.post(url, headers=headers, data=data)
+    r.raise_for_status()  # Make sure request was succesfull

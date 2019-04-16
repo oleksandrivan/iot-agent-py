@@ -85,3 +85,15 @@ class Device:
       del state['variableName']
       del state['house']
       return state
+
+FRONT_END_URL = "http://192.168.0.14:5000/api/world"
+class Subscription:
+    def __init__(self, type, variableName):
+        self.description = "Notification of changed variable"
+        self.subject = { "entities" : [ {"idPattern" : ".*" , "type" : type} ], "condition" : {
+            "attrs" : [ variableName ]
+        } }
+        self.notification = { "http" : { "url" : FRONT_END_URL}}
+    def __getstate__(self):
+      state = self.__dict__.copy()
+      return state
