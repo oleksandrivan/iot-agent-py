@@ -51,6 +51,14 @@ def sendReading(service,device,reading):
     r = requests.post(url,headers=headers, params=params,data=data)
     r.raise_for_status() #Make sure request was succesfull
 
+def sendReadingAccel(service,device,x,y,z):
+    url = "http://{}:{}/iot/d".format(SERVER_IP,IOT_HTTP_PORT)
+    params = { "k": service.apikey, "i" : device.deviceId }
+    headers = {"Content-Type":"text/plain"}
+    data = "x|{}|y|{}|z|{}".format(str(x), str(y), str(z))
+    r = requests.post(url,headers=headers, params=params,data=data)
+    r.raise_for_status()  # Make sure request was succesfull
+
 def registerSubscription(subscription):
     url = "http://{}:{}/v2/subscriptions/".format(SERVER_IP, ORION_PORT)
     headers = {"Content-Type": "application/json",
