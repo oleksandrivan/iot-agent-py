@@ -19,7 +19,8 @@ def checkStatus():
     print("Connection succesfull")
 
 
-
+# Sends the requests to given urls with specified headers and info
+# and generates exception in case of unsucessfull request
 def addHouse(house):
     url = "http://{}:{}/v2/entities/".format(SERVER_IP,ORION_PORT)
     headers = {"Content-Type":"application/json"}

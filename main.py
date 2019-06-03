@@ -7,7 +7,7 @@ import time
 from bluepy.btle import Scanner, DefaultDelegate
 
 
-
+#Create the entities for a standart house
 address = ntt.Address("Rioja", "Leganes", "Madrid", "28915")
 owner = ntt.Owner("Carla", 75)
 house = ntt.House(1, address, owner)
@@ -19,6 +19,7 @@ doorSubscription = ntt.Subscription("Door", "reading")
 presenceSubscription = ntt.Subscription("Presence", "reading")
 accelerometerSubscription = ntt.Subscription("Accelerometer", None )
 
+#List of devices to scan
 listDevice = [door, presence, accelerometer]
 
 #Fiware entities initialization
