@@ -2,8 +2,7 @@
 [![Python 3.7.3+](https://img.shields.io/badge/Python-3.7.3+-blue.svg)](https://www.python.org/downloads/release/python-373/)
 
 
-Foobar is a Python library for dealing with word pluralization.
-
+This part is responsible for entity creation, as well as forwarding information from BLE to Ultralight 2.0 protocol
 ## Requirements
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install required modules.
