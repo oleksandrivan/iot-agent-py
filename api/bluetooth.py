@@ -3,6 +3,7 @@ from api import iot_request as request
 from time import sleep
 import struct
 
+#Create bluepy Scan Delegate
 class ScanDelegate(DefaultDelegate):
     fiwareService = 0
     x,y,z = 0, 0, 0
@@ -10,14 +11,15 @@ class ScanDelegate(DefaultDelegate):
         DefaultDelegate.__init__(self)
         self.listDevices = listDevices
         ScanDelegate.fiwareService = fiwareService
-
+    # Method to handle advertisement packets from devices
     def handleDiscovery(self, dev, isNewDev, isNewData):
         if isNewData:
             for device in self.listDevices:
-                if dev.addr == device.mac:
+                if dev.addr == device.mac: #Check if the packet corresponds to our devices
                     ScanDelegate.processDevice(self, device, dev.rawData)
 
-
+    # Based on device type, gets the status byte or bytes and checks for value given in sensors protocol,
+    # sends the status to IoT agent
     def processDevice(self, device, rawData):
         if device.type == "Door":
             state = rawData[20]

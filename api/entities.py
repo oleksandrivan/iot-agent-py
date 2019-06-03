@@ -1,3 +1,6 @@
+
+#Contains all the needed entities for creation of houses, sensors and so on
+# *Note: the overriden getstate is for adjusting from python class to entity type needed for Fiware
 class House:
     def __init__(self, id, address, owner):
         self.type = "House"
@@ -107,7 +110,7 @@ class Device:
 
 FRONT_END_URL = "http://192.168.0.14:5000/api/world"
 
-
+#The subscriptions changes based on the type of sensor
 class Subscription:
     def __init__(self, type, variableName):
         self.description = "Notification of changed variable"
